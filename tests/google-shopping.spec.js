@@ -17,7 +17,7 @@ test('google search world news and open shopping from more', async ({ page }) =>
   await page.waitForLoadState('networkidle');
 
   // Click the More menu and choose Shopping.
-  const moreButton = page.locator('text=More').first();
+  const moreButton = page.getByText('More', { exact: true });
   await moreButton.waitFor({ state: 'visible', timeout: 10000 });
   await moreButton.click();
 
