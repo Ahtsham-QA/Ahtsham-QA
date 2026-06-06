@@ -3,7 +3,7 @@
 
 ![Playwright](https://img.shields.io/badge/Playwright-latest-green)
 ![Copilot](https://img.shields.io/badge/GitHub%20Copilot-MCP-blue)
-
+![CI](https://github.com/Ahtsham-QA/Ahtsham-QA/actions/workflows/playwright.yml/badge.svg)
 ---
 
 ## 📌 Project Overview
@@ -95,7 +95,10 @@ npx playwright show-report
 
 ```
 ├── tests/
-│   └── cart.spec.js        # Login, cart, checkout & order confirmation tests
+│   ├── login.spec.js        # Login validation tests
+│   ├── cart.spec.js         # Cart management tests
+│   ├── checkout.spec.js     # Checkout flow tests
+│   └── visual.spec.js       # Percy visual regression tests
 ├── playwright.config.js
 ├── .github/
 │   └── workflows/

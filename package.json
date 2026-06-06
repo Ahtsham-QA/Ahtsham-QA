@@ -9,6 +9,7 @@
   "license": "ISC",
   "devDependencies": {
     "@percy/playwright": "^1.1.0",
+    "@percy/sdk-utils": "^1.31.14",
     "@playwright/test": "^1.60.0",
     "@types/node": "^25.9.1"
   }
