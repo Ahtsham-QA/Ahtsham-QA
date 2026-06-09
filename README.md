@@ -1,6 +1,12 @@
 # Playwright QA Automation Framework — SauceDemo
 
-A production-grade test automation framework built with **Playwright** and the **Page Object Model (POM)** pattern, covering the full e-commerce flow on [SauceDemo](https://www.saucedemo.com). Tests run across **3 browsers** with **CI/CD via GitHub Actions** and **visual regression via Percy**.
+A production-grade test automation framework built with **Playwright** and the **Page Object Model (POM)** pattern, covering the full e-commerce flow on [SauceDemo](https://www.saucedemo.com). Tests run across **3 browsers** with **CI/CD via GitHub Actions**, **visual regression via Percy**, and **AI-assisted bug logging via Jira MCP integration**.
+
+![Playwright](https://img.shields.io/badge/Playwright-latest-green)
+![CI](https://img.shields.io/badge/CI-passing-brightgreen)
+![Tests](https://img.shields.io/badge/Tests-69%20passed-brightgreen)
+![Copilot](https://img.shields.io/badge/GitHub%20Copilot-MCP-blue)
+![Jira](https://img.shields.io/badge/Jira-MCP%20Integrated-blue)
 
 ---
 
@@ -11,8 +17,9 @@ A production-grade test automation framework built with **Playwright** and the *
 | Playwright | Cross-browser test automation |
 | Page Object Model | Maintainable, scalable test architecture |
 | GitHub Actions | CI/CD pipeline — runs on every push |
-| Percy | Visual regression testing |
-| GitHub Copilot | AI-assisted test generation |
+| Percy | Visual regression testing (in progress) |
+| GitHub Copilot MCP | AI-assisted test generation & debugging |
+| Jira MCP | AI-triggered automatic bug logging with screenshot evidence |
 | Node.js | Runtime environment |
 
 ---
@@ -49,9 +56,37 @@ playwright-qa-project/
 | inventory.spec.js | 18 | Page load, product count, sort, cart badge, logout |
 | cart.spec.js | 9 | Add single item, add multiple items, remove & checkout |
 | checkout.spec.js | 12 | Happy path, missing first/last name, missing postal code |
-| **Total** | **48+** | **Full e-commerce flow** |
+| visual.spec.js | — | Percy visual regression (in progress) |
+| **Total** | **69 passed** | **Full e-commerce flow** |
 
 All tests run across **Chromium, Firefox and WebKit (Safari)**.
+
+---
+
+## 🤖 AI-Assisted Workflow
+
+This framework was built using a modern AI-assisted QA workflow — not just written manually line by line.
+
+### GitHub Copilot MCP
+- Generated POM class scaffolding from plain comments
+- Suggested locators, assertions, and test data
+- Assisted with CI/CD YAML configuration and debugging
+- Helped with git commits and pipeline fixes
+
+### Jira MCP Integration ⭐
+The most advanced feature of this framework — **automatic AI-triggered bug logging into Jira.**
+
+**How it works:**
+1. A test failure or bug is identified during exploration
+2. GitHub Copilot Agent Mode (MCP) is prompted with the bug details
+3. Copilot automatically creates a Jira ticket with:
+   - Bug title and description
+   - Steps to reproduce
+   - Screenshot evidence attached
+   - Severity and priority set
+4. Ticket appears instantly in Jira backlog — zero manual effort
+
+> 💡 *This demonstrates how AI tooling can eliminate the manual overhead of bug logging — one of the most time-consuming parts of a QA engineer's workflow.*
 
 ---
 
@@ -61,6 +96,7 @@ Tests run automatically on every push via **GitHub Actions**.
 
 - ✅ Runs on: `push` and `pull_request` to `main`
 - ✅ Browsers: Chromium, Firefox, WebKit
+- ✅ 10 successful pipeline runs and counting
 - ✅ HTML report uploaded as artifact on failure
 - ✅ Pipeline currently **green** across all browsers
 
@@ -93,12 +129,26 @@ export class LoginPage {
 
 ---
 
+## 📈 Framework Evolution
+
+This framework was built iteratively — not from a tutorial:
+
+| Stage | What Was Built |
+|-------|---------------|
+| Week 1 | Basic cart.spec.js — login, add/remove, checkout |
+| Week 2 | POM refactor — LoginPage, InventoryPage, CartPage, CheckoutPage |
+| Week 3 | CI/CD pipeline — GitHub Actions green across 3 browsers |
+| Week 4 | Jira MCP integration — AI-triggered bug logging with screenshots |
+| In Progress | Percy visual regression testing |
+
+---
+
 ## 🛠️ Setup & Installation
 
 ```bash
 # Clone the repo
 git clone https://github.com/Ahtsham-QA/Ahtsham-QA.git
-cd playwright-qa-project
+cd Ahtsham-QA
 
 # Install dependencies
 npm install
@@ -132,7 +182,8 @@ npx playwright show-report
 
 ## 👤 Author
 
-**Ahtsham** — QA Automation Lead | AI-Assisted Testing | Playwright & Selenium | CSM  
+**Ahtsham** — QA Automation Lead & Consultant | AI-Assisted Testing | Playwright | CSM
+
 [LinkedIn](https://linkedin.com/in/ahtshamijaz1984/) · [GitHub](https://github.com/Ahtsham-QA)
 
 ---
