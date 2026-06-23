@@ -1,3 +1,4 @@
+import percySnapshot from '@percy/playwright';
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage.js';
 
@@ -12,6 +13,7 @@ test.describe('Sauce Demo Login Page', () => {
   test.describe('Successful Login', () => {
     test('Valid login with standard_user', async ({ page }) => {
       await loginPage.login('standard_user', 'secret_sauce');
+      await percySnapshot(page, 'Login Page');
       await expect(page).toHaveURL(/inventory.html/);
       await expect(page.locator('.inventory_list')).toBeVisible();
       await expect(page.locator('.title')).toHaveText('Products');
