@@ -27,6 +27,7 @@ export default defineConfig({
     },
     {
       name: 'chromium',
+      testIgnore: '**/api/**',
       use: {
         ...devices['Desktop Chrome'],
         launchOptions: { slowMo: 1000 },
@@ -34,10 +35,12 @@ export default defineConfig({
     },
     {
       name: 'firefox',
+      testIgnore: '**/api/**',
       use: { ...devices['Desktop Firefox'] },
     },
     {
       name: 'webkit',
+      testIgnore: '**/api/**',
       use: { ...devices['Desktop Safari'] },
     },
   ],
