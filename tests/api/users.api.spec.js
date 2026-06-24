@@ -27,11 +27,11 @@ test.describe('Users API', () => {
 
   test('POST /users - should create a new user', async ({ request }) => {
     const response = await request.post(`${BASE_URL}/users`, {
-      data: { name: 'Ahtsham', job: 'QA Automation Lead' },
+      data: { name: 'Mr Ahtsham', job: 'QA Automation Lead' },
     });
     expect(response.status()).toBe(201);
     const body = await response.json();
-    expect(body.name).toBe('Ahtsham');
+    expect(body.name).toBe('Mr Ahtsham');
     expect(body.job).toBe('QA Automation Lead');
     expect(body).toHaveProperty('id');
     expect(body).toHaveProperty('createdAt');
@@ -39,11 +39,11 @@ test.describe('Users API', () => {
 
   test('PUT /users/:id - should fully update a user', async ({ request }) => {
     const response = await request.put(`${BASE_URL}/users/2`, {
-      data: { name: 'Ahtsham Updated', job: 'Senior QA Consultant' },
+      data: { name: 'Ahtsham Status Updated', job: 'Senior QA Consultant' },
     });
     expect(response.status()).toBe(200);
     const body = await response.json();
-    expect(body.name).toBe('Ahtsham Updated');
+    expect(body.name).toBe('Ahtsham Status Updated');
     expect(body).toHaveProperty('updatedAt');
   });
 
