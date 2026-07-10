@@ -27,7 +27,7 @@ jobs:
       run: npx playwright test
       env:
         REQRES_API_KEY: ${{ secrets.REQRES_API_KEY }}
-        JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+        JIRA_BASE_URL: https://ijazahtsham1.atlassian.net
         JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
         JIRA_PROJECT_KEY: ${{ secrets.JIRA_PROJECT_KEY }}
