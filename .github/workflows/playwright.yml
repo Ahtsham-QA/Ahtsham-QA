@@ -17,6 +17,12 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Debug secrets
+      run: |
+        echo "JIRA_BASE_URL is set: ${{ secrets.JIRA_BASE_URL != '' }}"
+        echo "JIRA_EMAIL is set: ${{ secrets.JIRA_EMAIL != '' }}"
+        echo "JIRA_API_TOKEN is set: ${{ secrets.JIRA_API_TOKEN != '' }}"
+        echo "JIRA_PROJECT_KEY is set: ${{ secrets.JIRA_PROJECT_KEY != '' }}"
     - name: Run Playwright tests
       run: npx playwright test
       env:
