@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage.js';
 import { InventoryPage } from '../pages/InventoryPage.js';
+import testData from '../utils/testData.js';
 
 test.describe('Sauce Demo Inventory Page', () => {
   let loginPage;
@@ -10,39 +11,39 @@ test.describe('Sauce Demo Inventory Page', () => {
     loginPage = new LoginPage(page);
     inventoryPage = new InventoryPage(page);
     await loginPage.goto();
-    await loginPage.login('standard_user', 'secret_sauce');
+    await loginPage.login(testData.users.standard.username, testData.users.standard.password);
     await expect(page).toHaveURL(/inventory.html/);
   });
 
-  test('Inventory page title is Products', async ({ page }) => {
+  test('Inventory page title is Products', async () => {
     await expect(inventoryPage.title).toHaveText('Products');
   });
 
-  test('Inventory list is visible', async ({ page }) => {
+  test('Inventory list is visible', async () => {
     await expect(inventoryPage.inventoryList).toBeVisible();
   });
 
-  test('Six products are displayed', async ({ page }) => {
+  test('Six products are displayed', async () => {
     const count = await inventoryPage.inventoryItems.count();
     expect(count).toBe(6);
   });
 
-  test('Sort products by price low to high', async ({ page }) => {
+  test('Sort products by price low to high', async () => {
     await inventoryPage.sortBy('lohi');
-    const prices = await page.locator('.inventory_item_price').allTextContents();
+    const prices = await inventoryPage.inventoryItems.locator('.inventory_item_price').allTextContents();
     const numbers = prices.map(p => parseFloat(p.replace('$', '')));
     const sorted = [...numbers].sort((a, b) => a - b);
     expect(numbers).toEqual(sorted);
   });
 
-  test('Cart badge updates when item added', async ({ page }) => {
-    await inventoryPage.addItemToCartByName('Sauce Labs Backpack');
+  test('Cart badge updates when item added', async () => {
+    await inventoryPage.addItemToCartByName(testData.products.backpack);
     const count = await inventoryPage.getCartCount();
     expect(count).toBe('1');
   });
 
-  test('Logout navigates back to login page', async ({ page }) => {
+  test('Logout navigates back to login page', async () => {
     await inventoryPage.logout();
-    await expect(page).toHaveURL('https://www.saucedemo.com/');
+    await expect(inventoryPage.page).toHaveURL('https://www.saucedemo.com/');
   });
 });

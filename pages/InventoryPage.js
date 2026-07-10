@@ -7,18 +7,18 @@ export class InventoryPage {
     this.cartIcon = page.locator('.shopping_cart_link');
     this.cartBadge = page.locator('.shopping_cart_badge');
     this.sortDropdown = page.locator('[data-test="product-sort-container"]');
-    this.burgerMenu = page.locator('#react-burger-menu-btn');
+    this.burgerMenuButton = page.getByRole('button', { name: 'Open Menu' });
     this.logoutLink = page.locator('#logout_sidebar_link');
   }
 
   async addItemToCartByName(itemName) {
-    const item = this.page.locator('.inventory_item').filter({ hasText: itemName });
-    await item.locator('button').click();
+    const item = this.page.locator('.inventory_item').filter({ hasText: itemName }).first();
+    await item.getByRole('button', { name: 'Add to cart' }).click();
   }
 
   async removeItemFromCartByName(itemName) {
-    const item = this.page.locator('.inventory_item').filter({ hasText: itemName });
-    await item.locator('button').click();
+    const item = this.page.locator('.inventory_item').filter({ hasText: itemName }).first();
+    await item.getByRole('button', { name: 'Remove' }).click();
   }
 
   async goToCart() {
@@ -30,7 +30,7 @@ export class InventoryPage {
   }
 
   async logout() {
-    await this.burgerMenu.click();
+    await this.burgerMenuButton.click();
     await this.logoutLink.click();
   }
 

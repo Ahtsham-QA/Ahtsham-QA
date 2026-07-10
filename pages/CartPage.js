@@ -2,8 +2,8 @@ export class CartPage {
   constructor(page) {
     this.page = page;
     this.cartItems = page.locator('.cart_item');
-    this.checkoutButton = page.locator('[data-test="checkout"]');
-    this.continueShoppingButton = page.locator('[data-test="continue-shopping"]');
+    this.checkoutButton = page.getByRole('button', { name: 'Checkout' });
+    this.continueShoppingButton = page.getByRole('button', { name: 'Continue Shopping' });
     this.cartTitle = page.locator('.title');
   }
 
@@ -13,6 +13,11 @@ export class CartPage {
 
   async continueShopping() {
     await this.continueShoppingButton.click();
+  }
+
+  async removeItemByName(itemName) {
+    const item = this.page.locator('.cart_item').filter({ hasText: itemName }).first();
+    await item.getByRole('button', { name: 'Remove' }).click();
   }
 
   async getCartItemCount() {
