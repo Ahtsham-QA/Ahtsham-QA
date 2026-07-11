@@ -55,7 +55,7 @@ async function createJiraBug({ summary, description, priority = 'High' }) {
   } catch (error) {
     console.error(`❌ Failed to create Jira bug: ${error.message}`);
     console.error('Jira response:', JSON.stringify(error.response?.data, null, 2));
-    throw error;
+    return null;
   }
 }
 
