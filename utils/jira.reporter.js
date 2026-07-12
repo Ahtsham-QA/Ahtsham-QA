@@ -13,15 +13,19 @@ class JiraReporter {
 
       console.log(`❌ Test failed: ${testTitle} — logging to Jira`);
 
-      await createJiraBug({
-        summary: `[Auto] Test Failed: ${testTitle}`,
-        description: `Test file: ${testFile}
+      try {
+        await createJiraBug({
+          summary: `[Auto] Test Failed: ${testTitle}`,
+          description: `Test file: ${testFile}
 Test name: ${testTitle}
 Error: ${errorMessage}
 Status: ${result.status}
 Duration: ${result.duration}ms`,
-        priority: 'High',
-      });
+          priority: 'High',
+        });
+      } catch (error) {
+        console.log('⚠️ Jira logging failed in CI — skipping');
+      }
     }
   }
 
