@@ -1,5 +1,4 @@
 const { test, expect } = require('@playwright/test');
-const { createJiraBug } = require('../../utils/jira.helper');
 
 const BASE_URL = 'https://reqres.in/api';
 
@@ -26,8 +25,8 @@ test.describe('Negative API scenarios', () => {
   });
 
   // BUG: Wrong password returns 200 instead of 401
-  // Auto-logging to Jira when detected
-  test('POST /login with wrong password - BUG returns 200 instead of 401', async ({ request }) => {
+  // Global reporter will auto-log to Jira when this fails
+  test('POST /login with wrong password - should return 401', async ({ request }) => {
     const response = await request.post(`${BASE_URL}/login`, {
       data: {
         email: 'eve.holt@reqres.in',
@@ -35,24 +34,9 @@ test.describe('Negative API scenarios', () => {
       },
     });
 
-    const actualStatus = response.status();
-
-    // Anything other than 401 is unexpected behavior
-    if (actualStatus !== 401) {
-      await createJiraBug({
-        summary: `Security: POST /login returned ${actualStatus} instead of 401`,
-        description: `Endpoint: POST /api/login
-Expected: 401 Unauthorized
-Actual: ${actualStatus}
-Test: POST /login with wrong password
-Impact: Authentication not working correctly`,
-        priority: 'High',
-      });
-    }
-
-    // Bug: should be 401 but Reqres returns 200
-    // Documenting actual behavior until fixed
-    expect(actualStatus).not.toBe(401);
+    // This will fail because Reqres returns 200 instead of 401
+    // Global reporter catches the failure and logs to Jira automatically
+    expect(response.status()).toBe(401);
   });
 
   // Negative scenario: requesting a non-existent user should return 404.
