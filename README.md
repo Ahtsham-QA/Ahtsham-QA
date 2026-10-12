@@ -180,11 +180,25 @@ npx playwright show-report
 
 ---
 
-## 👤 Author
+## About the Author
 
-**Ahtsham** — QA Automation Lead & Consultant | AI-Assisted Testing | Playwright | CSM
+**Ahtsham Ijaz** — QA Automation Lead & AI Testing Specialist
 
-[LinkedIn](https://linkedin.com/in/ahtshamijaz1984/) · [GitHub](https://github.com/Ahtsham-QA)
+### Certifications
+- ISTQB CTFL v4.0
+- CSM (Certified Scrum Master)
+- Salesforce Associate
+- Infosys GitHub Copilot AI Tester — Intermediate
+- Infosys GenAI Tester — Intermediate
+- Infosys GenAI Professional — Advanced
+- Infosys Applied GenAI Professional — Advanced
+- Infosys Responsible AI Practitioner — Intermediate
+- Infosys Agentic AI for All
+- Infosys GenAI for All
+
+### Connect
+- LinkedIn: linkedin.com/in/ahtshamijaz1984
+- GitHub: github.com/Ahtsham-QA
 
 ---
 
